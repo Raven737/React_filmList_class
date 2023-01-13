@@ -1,70 +1,10 @@
-# Getting Started with Create React App
+Practice: Fetch data from server and output it in markup
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Завдання 1.
+Використовуючи TheMovieDB API(https://www.themoviedb.org/) реалізувати сторінку - перелік фільмів. Сторінка повинна мати мати заголовок “Favourite Movies”. Далі розміщується список фільмів у колонку. Кожен елемент зі списку повинен відображати заголовок (title) фільму, картинку (poster) та опис (overview). Користуємось виключно класовими React-компонентами, дані для відображення завантажуємо при початковому рендері сторінки, використовуючи методи життєвого циклу. Також застилити сторінку для кращого вигляду.
 
-## Available Scripts
+Завдання 2.
+Реалізувати компонент RateSwitch. Даний компонент відображає текст “Show Rate”. При кліку на нього, даний текст змінюється, показуючи рейтинг фільму (popularity) та додатковий текст справа “Hide Rate”. Відповідно при повторному кліку на текст зліва від рейту компонент приховує рейтинг і показує попередній текст “Show Rate”. Імпортувати даний компонент на основну сторінку із фільмами і добавити для кожного посту із фільмом - адаптувати відповідно логіку, що передавати рейтинг із даних, отриманих по API. Компонент також повинен бути класовий, мінімально застилений.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Завдання 3.*
+Реалізувати пагінацію для даної сторінки (можна написати власну або підключити існуючу бібліотеку і використати її компонент). По складності пагінація має бути простою - 2 кнопки - previous page та next page. Відповідно при кліку на кнопки завантажуватимемо попередню або наступну сторінку. Також користуємось лише класовими компонентами, мінімально застилюємо. Якщо ми знаходимось на першій сторінці - кнопка previous pagе задісейблена - якщо на останній - дісейблимо кнопку next page. Компонент повинен приймати пропсами номер поточної сторінки, загальну к-сть сторінок та хендлер, який її змінює - відповідно буде універсальним, щоб можна було використати в будь-якому потрібному місці. Добавити на основну сторінку із фільмами та адаптувати логіку для переходу на потрібну сторінку.
