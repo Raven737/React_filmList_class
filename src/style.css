@@ -3,6 +3,7 @@ h2,
 h3,
 h4 {
     text-align: center;
+    text-transform: uppercase;
 }
 
 .film-title {
@@ -10,5 +11,5 @@ h4 {
 }
 
 .film-wrap {
-    background-color: #f00;
+    background-color: rgb(222, 208, 208);
 }
