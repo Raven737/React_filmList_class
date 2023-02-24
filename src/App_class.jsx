@@ -1,8 +1,6 @@
 import { Component } from "react";
 import RateSwitch from "./RateSwitch";
-
-const API_URL =
-    "https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate";
+import Pagination from "./Pagination";
 
 class App_class extends Component {
     constructor(props) {
@@ -11,11 +9,21 @@ class App_class extends Component {
             films: null,
             error: null,
             isLoading: true,
+            page: 9,
         };
     }
 
+    pageDown = () => {
+        this.setState({ page: this.state.page - 1 });
+    };
+
+    pageUp = () => {
+        this.setState({ page: this.state.page + 1 });
+    };
+
     componentDidMount() {
-        fetch(API_URL)
+        let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.page}&with_watch_monetization_types=flatrate`;
+        fetch(url)
             .then((response) => response.json())
             .then((json) => {
                 this.setState({ films: json, isLoading: false });
@@ -25,12 +33,32 @@ class App_class extends Component {
             });
     }
 
-    render() {
-        const { films, error, isLoading } = this.state;
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState !== this.state.page) {
+            let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.page}&with_watch_monetization_types=flatrate`;
+            fetch(url)
+                .then((response) => response.json())
+                .then((json) => {
+                    this.setState({ films: json, isLoading: false });
+                })
+                .catch((error) => {
+                    this.setState({ error: error, isLoading: false });
+                });
+        }
+    }
 
+    render() {
+        const { films, error, isLoading, page } = this.state;
+        // console.log(this.state.page);
         return (
             <div className="film-wrap">
                 <h1 className="headline">Favourite Movies</h1>
+                <Pagination
+                    films={films}
+                    page={page}
+                    pageDown={this.pageDown}
+                    pageUp={this.pageUp}
+                />
                 {error ? (
                     <div>Error: {error.message}</div>
                 ) : !isLoading ? (
