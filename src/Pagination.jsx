@@ -5,78 +5,70 @@ class Pagination extends Component {
         super(props);
     }
 
+    maxPage = 500;
+
+    prevTen = () => {
+        if (this.props.page - 10 < 0) return this.props.pageOne();
+        this.props.pageDownTen();
+    };
     prev = () => {
         if (this.props.page === 1) return null;
         this.props.pageDown();
     };
-    // next = () => {
-    //     if (this.props.page === this.props.films?.total_pages) return null;
-    //     this.props.pageUp();
-    // };
-    // pageNumber1 = () => {
-    //     this.props.pageNumber1();
-    // };
-    // pageNumber2 = () => {
-    //     this.props.pageNumber2();
-    // };
-    // pageNumber3 = () => {
-    //     this.props.pageNumber3();
-    // };
-    // lastPage = () => {
-    //     this.props.lastPage();
-    // };
+    pageNum1 = () => {
+        if (this.props.page === 1) return null;
+        this.props.pageNumber1();
+    };
+    pageNum2 = () => {
+        this.props.pageNumber2();
+    };
+    lastPage = () => {
+        this.props.endPage();
+    };
+    next = () => {
+        if (this.props.page === this.maxPage) return null;
+        this.props.pageUp();
+    };
+    nextTen = () => {
+        if (this.props.page + 10 > this.maxPage) return this.props.endPage();
+        this.props.pageUpTen();
+    };
 
     render() {
-        // const {
-        //     pageDown,
-        //     pageUp,
-        //     pageNumber1,
-        //     pageNumber2,
-        //     pageNumber3,
-        //     selectNumber,
-        //     lastPage,
-        // } = this.props;
-
-        const prev = () => {
-            if (this.props.page === 1) return null;
-            this.props.pageDown();
-        };
-        const next = () => {
-            if (this.props.page === this.props.films?.total_pages) return null;
-            this.props.pageUp();
-        };
-        const pageNum1 = () => {
-            this.props.pageNumber1();
-        };
-        const pageNum2 = () => {
-            this.props.pageNumber2();
-        };
-        const pageNum3 = () => {
-            this.props.pageNumber3();
-        };
-        const selectNum = () => {
-            this.props.selectNumber();
-        };
-        const lstPage = () => {
-            this.props.lastPage();
-        };
-
         return (
             <div className="pagination">
-                <button onClick={prev}>prev</button>
-                <button onClick={pageNum1}>1</button>
-                <button onClick={pageNum2}>2</button>
-                <button onClick={pageNum3}>3</button>
-                <input
-                    id="enterBtn"
-                    type="number"
-                    placeholder="enter page number"
-                />
-                <button onClick={selectNum}>Enter number</button>
-                <button onClick={lstPage}>
-                    {this.props.films?.total_pages}
+                <button className="prev-btn" onClick={this.prevTen}>
+                    - 10
                 </button>
-                <button onClick={next}>next</button>
+                <button className="prev-btn" onClick={this.prev}>
+                    - 1
+                </button>
+                <button className="btn" onClick={this.prev}>
+                    {this.props.page === 1 ? (
+                        <span>---</span>
+                    ) : (
+                        this.props.page - 1
+                    )}
+                </button>
+                <button className="current-btn btn">{this.props.page}</button>
+                <button className="btn" onClick={this.pageNum2}>
+                    {this.props.page <= this.maxPage &&
+                    this.props.page + 1 <= this.maxPage ? (
+                        this.props.page + 1
+                    ) : (
+                        <span>---</span>
+                    )}
+                </button>
+                <button className="btn">. . .</button>
+                <button className="btn" onClick={this.lastPage}>
+                    {this.maxPage}
+                </button>
+                <button className="next-btn" onClick={this.next}>
+                    + 1
+                </button>
+                <button className="next-btn" onClick={this.nextTen}>
+                    + 10
+                </button>
             </div>
         );
     }

@@ -21,3 +21,17 @@ h4 {
 .pagination {
     text-align: center;
 }
+.btn {
+    width: 70px;
+    height: 35px;
+    font-size: 20px;
+}
+.current-btn {
+    background-color: rgb(218, 36, 36);
+    font-weight: bold;
+}
+.input {
+    box-sizing: border-box;
+    height: 35px;
+    background-color: chartreuse;
+}

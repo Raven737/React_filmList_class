@@ -22,9 +22,9 @@ class RateSwitch extends Component {
                 )}
                 <a href="#" onClick={toggleRate}>
                     {this.state.isShowRate ? (
-                        <button className="btn">Hide Rate</button>
+                        <button>Hide Rate</button>
                     ) : (
-                        <button className="btn">Show Rate</button>
+                        <button>Show Rate</button>
                     )}
                 </a>
             </div>

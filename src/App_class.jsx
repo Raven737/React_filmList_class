@@ -1,4 +1,4 @@
-import { Component } from "react";
+import { Component, useRef } from "react";
 import RateSwitch from "./RateSwitch";
 import Pagination from "./Pagination";
 
@@ -13,6 +13,14 @@ class App_class extends Component {
         };
     }
 
+    pageOne = () => this.setState({ page: 1 });
+    pageDownTen = () => this.setState({ page: this.state.page - 10 });
+    pageDown = () => this.setState({ page: this.state.page - 1 });
+    pageNumber2 = () => this.setState({ page: this.state.page + 1 });
+    endPage = () => this.setState({ page: 500 });
+    pageUp = () => this.setState({ page: this.state.page + 1 });
+    pageUpTen = () => this.setState({ page: this.state.page + 10 });
+
     componentDidMount() {
         let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.page}&with_watch_monetization_types=flatrate`;
         fetch(url)
@@ -24,25 +32,6 @@ class App_class extends Component {
                 this.setState({ error: error, isLoading: false });
             });
     }
-
-    // pageDown = () => {
-    //     this.setState({ page: this.state.page - 1 });
-    // };
-    // pageUp = () => {
-    //     this.setState({ page: this.state.page + 1 });
-    // };
-    // pageNumber1 = () => {
-    //     this.setState({ page: 1 });
-    // };
-    // pageNumber2 = () => {
-    //     this.setState({ page: 2 });
-    // };
-    // pageNumber3 = () => {
-    //     this.setState({ page: 3 });
-    // };
-    // lastPage = () => {
-    //     this.setState({ page: this.films?.total_pages });
-    // };
 
     componentDidUpdate(prevProps, prevState) {
         if (prevState.page !== this.state.page) {
@@ -59,43 +48,19 @@ class App_class extends Component {
     }
 
     render() {
-        // const { films, error, isLoading, page } = this.state;
-
-        const pageDown = () => {
-            this.setState({ page: this.state.page - 1 });
-        };
-        const pageUp = () => {
-            this.setState({ page: this.state.page + 1 });
-        };
-        const pageNumber1 = () => {
-            this.setState({ page: 1 });
-        };
-        const pageNumber2 = () => {
-            this.setState({ page: 2 });
-        };
-        const pageNumber3 = () => {
-            this.setState({ page: 3 });
-        };
-        const selectNumber = () => {
-            this.setState({ page: document.getElementById("enterBtn").value });
-        };
-        const lastPage = () => {
-            this.setState({ page: this.state.films?.total_pages });
-        };
         return (
             <div className="film-wrap">
                 <h1 className="headline">Favourite Movies</h1>
                 <h2 className="headline">page № {this.state.page}</h2>
                 <Pagination
-                    films={this.state.films}
                     page={this.state.page}
-                    pageDown={pageDown}
-                    pageUp={pageUp}
-                    pageNumber1={pageNumber1}
-                    pageNumber2={pageNumber2}
-                    pageNumber3={pageNumber3}
-                    selectNumber={selectNumber}
-                    lastPage={lastPage}
+                    pageOne={this.pageOne}
+                    pageDownTen={this.pageDownTen}
+                    pageDown={this.pageDown}
+                    pageNumber2={this.pageNumber2}
+                    endPage={this.endPage}
+                    pageUp={this.pageUp}
+                    pageUpTen={this.pageUpTen}
                 />
                 {this.state.error ? (
                     <div>Error: {this.state.error.message}</div>
