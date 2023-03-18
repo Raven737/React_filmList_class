@@ -1,4 +1,4 @@
-import { Component, useRef } from "react";
+import { Component } from "react";
 import RateSwitch from "./RateSwitch";
 import Pagination from "./Pagination";
 
@@ -16,10 +16,10 @@ class App_class extends Component {
     pageOne = () => this.setState({ page: 1 });
     pageDownTen = () => this.setState({ page: this.state.page - 10 });
     pageDown = () => this.setState({ page: this.state.page - 1 });
-    pageNumber2 = () => this.setState({ page: this.state.page + 1 });
     endPage = () => this.setState({ page: 500 });
     pageUp = () => this.setState({ page: this.state.page + 1 });
     pageUpTen = () => this.setState({ page: this.state.page + 10 });
+    entNum = (num) => this.setState({ page: num });
 
     componentDidMount() {
         let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.page}&with_watch_monetization_types=flatrate`;
@@ -51,16 +51,16 @@ class App_class extends Component {
         return (
             <div className="film-wrap">
                 <h1 className="headline">Favourite Movies</h1>
-                <h2 className="headline">page № {this.state.page}</h2>
+                <h2 className="headline">Page № {this.state.page}</h2>
                 <Pagination
                     page={this.state.page}
                     pageOne={this.pageOne}
                     pageDownTen={this.pageDownTen}
                     pageDown={this.pageDown}
-                    pageNumber2={this.pageNumber2}
                     endPage={this.endPage}
                     pageUp={this.pageUp}
                     pageUpTen={this.pageUpTen}
+                    enterNumber={this.entNum}
                 />
                 {this.state.error ? (
                     <div>Error: {this.state.error.message}</div>
