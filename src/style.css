@@ -35,3 +35,7 @@ h4 {
     height: 35px;
     background-color: chartreuse;
 }
+.pagination__form {
+    display: inline-block;
+    margin: 10px;
+}

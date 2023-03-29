@@ -7,26 +7,17 @@ class RateSwitch extends Component {
             isShowRate: false,
         };
     }
+    toggleRate = () => this.setState({ isShowRate: !this.state.isShowRate });
 
     render() {
-        const toggleRate = () => {
-            this.setState({ isShowRate: !this.state.isShowRate });
-        };
-
         return (
             <div>
+                <button onClick={this.toggleRate}>
+                    {this.state.isShowRate ? "Hide Rate" : "Show Rate"}
+                </button>
                 {this.state.isShowRate && (
-                    <a href="#">
-                        <h3 className="rating">{this.props.rating}</h3>
-                    </a>
+                    <h3 className="rating">{this.props.rating}</h3>
                 )}
-                <a href="#" onClick={toggleRate}>
-                    {this.state.isShowRate ? (
-                        <button>Hide Rate</button>
-                    ) : (
-                        <button>Show Rate</button>
-                    )}
-                </a>
             </div>
         );
     }

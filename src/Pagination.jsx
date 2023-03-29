@@ -1,88 +1,52 @@
-import { Component, createRef } from "react";
+import { Component } from "react";
 
 class Pagination extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            inputValue: null,
+        };
     }
 
-    myRef = createRef();
-    maxPage = 500;
-
-    prevTen = () => {
-        if (this.props.page - 10 < 0) return this.props.pageOne();
-        this.props.pageDownTen();
-    };
-    prev = () => {
-        if (this.props.page === 1) return null;
-        this.props.pageDown();
-    };
-    lastPage = () => {
-        this.props.endPage();
-    };
-    next = () => {
-        if (this.props.page === this.maxPage) return null;
-        this.props.pageUp();
-    };
-    nextTen = () => {
-        if (this.props.page + 10 > this.maxPage) return this.props.endPage();
-        this.props.pageUpTen();
-    };
-    search = () => {
-        if (
-            Number(this.myRef.current.value) === 0 ||
-            Number(this.myRef.current.value) + this.props.page <= 0 ||
-            Number(this.myRef.current.value) > this.maxPage
-        )
-            return null;
-
-        this.props.enterNumber(Number(this.myRef.current.value));
-    };
-
     render() {
+        const { pageStep, max_page, setPage } = this.props;
+
+        const handleInputValue = (event) => {
+            let newInputValue = event.target.value;
+            if (newInputValue < 1) newInputValue = 1;
+            if (newInputValue > max_page) newInputValue = max_page;
+            this.setState({ inputValue: newInputValue });
+        };
+
+        const handleSetPage = (event) => {
+            setPage(this.state.inputValue);
+            this.setState({ inputValue: "" });
+        };
+
         return (
             <div className="pagination">
                 <div>
-                    <button className="prev-btn" onClick={this.prevTen}>
+                    <button className="prev-btn" onClick={() => pageStep(-10)}>
                         - 10
                     </button>
-                    <button className="prev-btn" onClick={this.prev}>
+                    <button className="prev-btn" onClick={() => pageStep(-1)}>
                         - 1
                     </button>
-                    <button className="btn" onClick={this.prev}>
-                        {this.props.page !== 1 ? (
-                            this.props.page - 1
-                        ) : (
-                            <span>---</span>
-                        )}
-                    </button>
-                    <button className="current-btn btn">
-                        {this.props.page}
-                    </button>
-                    <button className="btn" onClick={this.next}>
-                        {this.props.page + 1 <= this.maxPage ? (
-                            this.props.page + 1
-                        ) : (
-                            <span>---</span>
-                        )}
-                    </button>
-                    <button className="btn">. . .</button>
-                    <button className="btn" onClick={this.lastPage}>
-                        {this.maxPage}
-                    </button>
-                    <button className="next-btn" onClick={this.next}>
+                    <div className="pagination__form">
+                        <input
+                            type="number"
+                            placeholder="enter page number"
+                            value={this.state.inputValue}
+                            onChange={handleInputValue}
+                        />
+                        <button onClick={handleSetPage}>Search</button>
+                    </div>
+                    <button className="next-btn" onClick={() => pageStep(1)}>
                         + 1
                     </button>
-                    <button className="next-btn" onClick={this.nextTen}>
+                    <button className="next-btn" onClick={() => pageStep(10)}>
                         + 10
                     </button>
-                </div>
-                <div>
-                    <input
-                        type="number"
-                        ref={this.myRef}
-                        placeholder="enter page number"
-                    />
-                    <button onClick={this.search}>Search</button>
                 </div>
             </div>
         );
