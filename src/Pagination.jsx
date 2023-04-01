@@ -4,7 +4,7 @@ class Pagination extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputValue: null,
+            inputValue: "",
         };
     }
 
@@ -18,7 +18,7 @@ class Pagination extends Component {
             this.setState({ inputValue: newInputValue });
         };
 
-        const handleSetPage = (event) => {
+        const handleSetPage = () => {
             setPage(this.state.inputValue);
             this.setState({ inputValue: "" });
         };

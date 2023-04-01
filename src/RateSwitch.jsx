@@ -16,7 +16,7 @@ class RateSwitch extends Component {
                     {this.state.isShowRate ? "Hide Rate" : "Show Rate"}
                 </button>
                 {this.state.isShowRate && (
-                    <h3 className="rating">{this.props.rating}</h3>
+                    <span className="rating">{this.props.rating}</span>
                 )}
             </div>
         );
