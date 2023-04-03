@@ -2,6 +2,7 @@ import React from "react";
 import Theme from "./Theme";
 import Pagination from "./Pagination";
 import RateSwitch from "./RateSwitch";
+import PopUp from "./PopUp";
 
 export const ThemeContext = React.createContext();
 
@@ -63,7 +64,7 @@ class App_class extends React.Component {
     render() {
         let currentTheme = this.state.lightTheme ? "light-theme" : "dark-theme";
         return (
-            <ThemeContext.Provider value="this.state">
+            <ThemeContext.Provider value={`${currentTheme}`}>
                 <div className={`container ${currentTheme}`}>
                     <div className="filmHeader">
                         <h1 className="headline">Favourite Movies</h1>
@@ -87,10 +88,11 @@ class App_class extends React.Component {
                                 <div className="filmWrap" key={film.id}>
                                     <hr />
                                     <h2 className="filmTitle">{film.title}</h2>
-                                    <p className="filmReleaseDate">
+                                    <PopUp release={film.release_date} />
+                                    {/* <p className="filmReleaseDate">
                                         Release date:&nbsp;
                                         {film.release_date}
-                                    </p>
+                                    </p> */}
                                     <RateSwitch rating={film.popularity} />
                                     <div className="filmBlock">
                                         <img

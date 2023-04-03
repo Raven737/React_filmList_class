@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { ThemeContext } from "./App";
 
 class RateSwitch extends Component {
     constructor(props) {
@@ -12,12 +13,15 @@ class RateSwitch extends Component {
     render() {
         return (
             <div>
-                <button onClick={this.toggleRate}>
-                    {this.state.isShowRate ? "Hide Rate" : "Show Rate"}
-                </button>
-                {this.state.isShowRate && (
-                    <span className="rating">{this.props.rating}</span>
-                )}
+                {/* <ThemeContext.Consumer> */}
+                    {/* {(value) => <h1>{value}</h1>} */}
+                    <button onClick={this.toggleRate}>
+                        {this.state.isShowRate ? "Hide Rate" : "Show Rate"}
+                    </button>
+                    {this.state.isShowRate && (
+                        <span className="rating">{this.props.rating}</span>
+                    )}
+                {/* </ThemeContext.Consumer> */}
             </div>
         );
     }
