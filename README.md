@@ -1,3 +1,5 @@
+<!-- Для запису змін з гілки "main" до гілки "gh-pages": npm run deploy -->
+
 Practice: Fetch data from server and output it in markup
 
 Завдання 1.
