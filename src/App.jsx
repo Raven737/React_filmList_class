@@ -3,8 +3,7 @@ import Theme from "./Theme";
 import Pagination from "./Pagination";
 import RateSwitch from "./RateSwitch";
 import PopUp from "./PopUp";
-
-export const ThemeContext = React.createContext();
+import ThemeContext from "./Context";
 
 class App_class extends React.Component {
     constructor(props) {
@@ -62,15 +61,20 @@ class App_class extends React.Component {
     }
 
     render() {
-        let currentTheme = this.state.lightTheme ? "light-theme" : "dark-theme";
+        // let currentTheme = this.state.lightTheme ? "light-theme" : "dark-theme";
+        // console.log(this.state.lightTheme);
         return (
-            <ThemeContext.Provider value={`${currentTheme}`}>
-                <div className={`container ${currentTheme}`}>
+            <ThemeContext.Provider value={this.state.lightTheme}>
+                <div
+                    className={`container ${
+                        this.state.lightTheme ? "light-theme" : "dark-theme"
+                    }`}
+                >
                     <div className="filmHeader">
                         <h1 className="headline">Favourite Movies</h1>
                         <Theme
                             toggle={this.toggle}
-                            lightTheme={this.state.lightTheme}
+                            // lightTheme={this.state.lightTheme}
                         />
                         <h2 className="pageNumber">Page № {this.state.page}</h2>
                         <Pagination
