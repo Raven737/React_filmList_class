@@ -1,4 +1,5 @@
 import { Component } from "react";
+import ThemeContext from "./Context";
 
 class Pagination extends Component {
     constructor(props) {
@@ -8,7 +9,10 @@ class Pagination extends Component {
         };
     }
 
+    static contextType = ThemeContext;
+
     render() {
+        console.log(this.context);
         const { pageStep, max_page, setPage } = this.props;
 
         const handleInputValue = (event) => {
@@ -26,25 +30,47 @@ class Pagination extends Component {
         return (
             <div className="pagination">
                 <div>
-                    <button className="prev-btn" onClick={() => pageStep(-10)}>
+                    <button
+                        className={this.context ? "light-theme" : "dark-theme"}
+                        onClick={() => pageStep(-10)}
+                    >
                         - 10
                     </button>
-                    <button className="prev-btn" onClick={() => pageStep(-1)}>
+                    <button
+                        className={this.context ? "light-theme" : "dark-theme"}
+                        onClick={() => pageStep(-1)}
+                    >
                         - 1
                     </button>
                     <div className="pagination__form">
                         <input
+                            className={
+                                this.context ? "light-theme" : "dark-theme"
+                            }
                             type="number"
                             placeholder="enter page number"
                             value={this.state.inputValue}
                             onChange={handleInputValue}
                         />
-                        <button onClick={handleSetPage}>Search</button>
+                        <button
+                            className={
+                                this.context ? "light-theme" : "dark-theme"
+                            }
+                            onClick={handleSetPage}
+                        >
+                            Search
+                        </button>
                     </div>
-                    <button className="next-btn" onClick={() => pageStep(1)}>
+                    <button
+                        className={this.context ? "light-theme" : "dark-theme"}
+                        onClick={() => pageStep(1)}
+                    >
                         + 1
                     </button>
-                    <button className="next-btn" onClick={() => pageStep(10)}>
+                    <button
+                        className={this.context ? "light-theme" : "dark-theme"}
+                        onClick={() => pageStep(10)}
+                    >
                         + 10
                     </button>
                 </div>

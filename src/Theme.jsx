@@ -9,10 +9,14 @@ class Theme extends Component {
     };
 
     render() {
-        console.log(this.context);
         return (
             <div className="theme">
-                <button className="themeBtn" onClick={this.toggleIcons}>
+                <button
+                    className={`themeBtn ${
+                        this.context ? "light-theme" : "dark-theme"
+                    }`}
+                    onClick={this.toggleIcons}
+                >
                     {this.context ? (
                         <>
                             <span>Light</span>

@@ -61,8 +61,6 @@ class App_class extends React.Component {
     }
 
     render() {
-        // let currentTheme = this.state.lightTheme ? "light-theme" : "dark-theme";
-        // console.log(this.state.lightTheme);
         return (
             <ThemeContext.Provider value={this.state.lightTheme}>
                 <div
@@ -72,10 +70,7 @@ class App_class extends React.Component {
                 >
                     <div className="filmHeader">
                         <h1 className="headline">Favourite Movies</h1>
-                        <Theme
-                            toggle={this.toggle}
-                            // lightTheme={this.state.lightTheme}
-                        />
+                        <Theme toggle={this.toggle} />
                         <h2 className="pageNumber">Page № {this.state.page}</h2>
                         <Pagination
                             page={this.state.page}
@@ -93,10 +88,6 @@ class App_class extends React.Component {
                                     <hr />
                                     <h2 className="filmTitle">{film.title}</h2>
                                     <PopUp release={film.release_date} />
-                                    {/* <p className="filmReleaseDate">
-                                        Release date:&nbsp;
-                                        {film.release_date}
-                                    </p> */}
                                     <RateSwitch rating={film.popularity} />
                                     <div className="filmBlock">
                                         <img

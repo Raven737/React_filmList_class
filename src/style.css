@@ -31,9 +31,16 @@
 .themeBtn {
     align-self: center;
     margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+#sun,
+#moon {
+    margin-left: 10px;
 }
 .light-theme {
     background-color: #eeeeee;
+    color: #000;
 }
 .dark-theme {
     background-color: #212121;
