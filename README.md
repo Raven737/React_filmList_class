@@ -1,4 +1,4 @@
-<!-- Для запису змін з гілки "main" до гілки "gh-pages": npm run deploy -->
+"npm run deploy" - для запису змін з гілки "main" до гілки "gh-pages". 
 
 Practice: Fetch data from server and output it in markup
 
