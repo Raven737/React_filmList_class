@@ -1,17 +1,18 @@
 import { Component } from "react";
-import ThemeContext from "./Context";
 
 class PopUp extends Component {
-    // constructor(props) {
-    //     super(props);
-    //     this.state = {
-
-    //     };
-    // }
     render() {
         return (
-            <div className="filmReleaseDate">
-                Release date: {this.props.release}
+            <div className="overlay">
+                <div className="pop-up">
+                    <button
+                        className="close"
+                        onClick={() => this.props.togglePopUp()}
+                    >
+                        &#10006;
+                    </button>
+                    <p>Release date: {this.props.date}</p>
+                </div>
             </div>
         );
     }

@@ -1,5 +1,5 @@
 import { Component } from "react";
-import ThemeContext from "./Context";
+import { Form, FormControl, Button } from "react-bootstrap";
 
 class Pagination extends Component {
     constructor(props) {
@@ -9,11 +9,8 @@ class Pagination extends Component {
         };
     }
 
-    static contextType = ThemeContext;
-
     render() {
-        console.log(this.context);
-        const { pageStep, max_page, setPage } = this.props;
+        const { max_page, pageStep, setPage } = this.props;
 
         const handleInputValue = (event) => {
             let newInputValue = event.target.value;
@@ -28,51 +25,65 @@ class Pagination extends Component {
         };
 
         return (
-            <div className="pagination">
-                <div>
-                    <button
-                        className={this.context ? "light-theme" : "dark-theme"}
+            <div
+                className={`d-flex justify-content-center ${
+                    this.props.lightTheme ? "light-theme" : "dark-theme"
+                }`}
+            >
+                <div className="d-flex">
+                    <Button
+                        className="me-1"
+                        variant={
+                            this.props.lightTheme ? "primary" : "secondary"
+                        }
                         onClick={() => pageStep(-10)}
                     >
                         - 10
-                    </button>
-                    <button
-                        className={this.context ? "light-theme" : "dark-theme"}
+                    </Button>
+                    <Button
+                        className="me-1"
+                        variant={
+                            this.props.lightTheme ? "warning" : "secondary"
+                        }
                         onClick={() => pageStep(-1)}
                     >
                         - 1
-                    </button>
-                    <div className="pagination__form">
-                        <input
-                            className={
-                                this.context ? "light-theme" : "dark-theme"
-                            }
+                    </Button>
+                    <Form className="d-flex">
+                        <FormControl
+                            className="me-1"
                             type="number"
-                            placeholder="enter page number"
+                            placeholder="Введіть номер стор."
                             value={this.state.inputValue}
                             onChange={handleInputValue}
                         />
-                        <button
-                            className={
-                                this.context ? "light-theme" : "dark-theme"
+                        <Button
+                            className="me-1"
+                            variant={
+                                this.props.lightTheme ? "danger" : "secondary"
                             }
                             onClick={handleSetPage}
                         >
-                            Search
-                        </button>
-                    </div>
-                    <button
-                        className={this.context ? "light-theme" : "dark-theme"}
+                            Пошук
+                        </Button>
+                    </Form>
+                    <Button
+                        className="me-1"
+                        variant={
+                            this.props.lightTheme ? "warning" : "secondary"
+                        }
                         onClick={() => pageStep(1)}
                     >
                         + 1
-                    </button>
-                    <button
-                        className={this.context ? "light-theme" : "dark-theme"}
+                    </Button>
+                    <Button
+                        variant={
+                            this.props.lightTheme ? "primary" : "secondary"
+                        }
                         onClick={() => pageStep(10)}
                     >
                         + 10
-                    </button>
+                    </Button>
                 </div>
             </div>
         );

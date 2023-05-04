@@ -17,14 +17,14 @@
     margin-left: 10px;
     font-weight: bold;
 }
-.pagination {
+/* .pagination {
     text-align: center;
-}
-.pagination__form {
+} */
+/* .pagination__form {
     display: inline-block;
     margin: 10px;
-}
-.theme {
+} */
+/* .theme {
     display: flex;
     justify-content: flex-end;
 }
@@ -33,7 +33,7 @@
     margin-right: 10px;
     display: flex;
     align-items: center;
-}
+} */
 #sun,
 #moon {
     margin-left: 10px;
@@ -43,8 +43,11 @@
     color: #000;
 }
 .dark-theme {
-    background-color: #212121;
+    background-color: #222;
     color: #fff;
+}
+.filmWrap {
+    position: relative;
 }
 .filmBlock {
     display: flex;
@@ -54,14 +57,32 @@
     padding: 0 10px 0;
     font-size: 18px;
 }
-.filmReleaseDate {
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    opacity: 0.8;
-    width: 200px;
-    height: 200px;
-    background-color: #0f0; */
-    text-align: center;
+.overlay {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #00000079;
+}
+.pop-up {
+    position: relative;
+    margin: auto;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 50px 20px 20px;
+}
+.close {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    top: 10px;
+    right: 10px;
+    /* border: 1px solid; */
+    border-radius: 5px;
+    cursor: pointer;
 }

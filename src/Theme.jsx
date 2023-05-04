@@ -1,8 +1,9 @@
 import { Component } from "react";
-import ThemeContext from "./Context";
+import Button from "react-bootstrap/Button";
+// import ThemeContext from "./Context";
 
 class Theme extends Component {
-    static contextType = ThemeContext;
+    // static contextType = ThemeContext;
 
     toggleIcons = () => {
         this.props.toggle();
@@ -10,14 +11,12 @@ class Theme extends Component {
 
     render() {
         return (
-            <div className="theme">
-                <button
-                    className={`themeBtn ${
-                        this.context ? "light-theme" : "dark-theme"
-                    }`}
+            <div class="d-flex justify-content-end">
+                <Button
+                    variant={this.props.lightTheme ? "info" : "secondary"}
                     onClick={this.toggleIcons}
                 >
-                    {this.context ? (
+                    {this.props.lightTheme ? (
                         <>
                             <span>Light</span>
                             <svg
@@ -69,7 +68,7 @@ class Theme extends Component {
                             </svg>
                         </>
                     )}
-                </button>
+                </Button>
             </div>
         );
     }

@@ -1,9 +1,10 @@
 import React from "react";
-import Theme from "./Theme";
-import Pagination from "./Pagination";
-import RateSwitch from "./RateSwitch";
-import PopUp from "./PopUp";
 import ThemeContext from "./Context";
+import Title from "./Title";
+import Pagination from "./Pagination";
+import Films from "./Films";
+import Theme from "./Theme";
+import PopUp from "./PopUp";
 
 class App_class extends React.Component {
     constructor(props) {
@@ -14,25 +15,10 @@ class App_class extends React.Component {
             isLoading: true,
             error: null,
             lightTheme: true,
+            releaseData: undefined,
+            isOpenPopUp: false,
         };
     }
-
-    MAX_PAGE = 500;
-
-    toggle = () => {
-        this.setState({ lightTheme: !this.state.lightTheme });
-    };
-
-    pageStep = (step) => {
-        const newPage = Number(this.state.page + step);
-        if (newPage < 1 || newPage > this.MAX_PAGE) return null;
-        this.setState({ page: newPage });
-    };
-
-    setPage = (num) => {
-        if (!num) return null;
-        this.setState({ page: Number(num) });
-    };
 
     componentDidMount() {
         let url = `https://api.themoviedb.org/3/discover/movie?api_key=ac202904369986b675f1700a286c33f6&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${this.state.page}&with_watch_monetization_types=flatrate`;
@@ -60,50 +46,68 @@ class App_class extends React.Component {
         }
     }
 
+    MAX_PAGE = 500;
+
+    pageStep = (step) => {
+        const newPage = Number(this.state.page + step);
+        if (newPage < 1 || newPage > this.MAX_PAGE) return null;
+        this.setState({ page: newPage });
+    };
+
+    setPage = (num) => {
+        if (!num) return null;
+        this.setState({ page: Number(num) });
+    };
+
+    toggle = () => {
+        this.setState({ lightTheme: !this.state.lightTheme });
+    };
+
+    getReleaseDate = (date) => {
+        this.setState({ releaseDate: date });
+    };
+
+    togglePopUp = () => {
+        this.setState({ isOpenPopUp: !this.state.isOpenPopUp });
+    };
+
     render() {
         return (
-            <ThemeContext.Provider value={this.state.lightTheme}>
+            <ThemeContext.Provider value={this.state}>
                 <div
-                    className={`container ${
+                    className={
                         this.state.lightTheme ? "light-theme" : "dark-theme"
-                    }`}
+                    }
                 >
-                    <div className="filmHeader">
-                        <h1 className="headline">Favourite Movies</h1>
-                        <Theme toggle={this.toggle} />
-                        <h2 className="pageNumber">Page № {this.state.page}</h2>
-                        <Pagination
-                            page={this.state.page}
-                            max_page={this.MAX_PAGE}
-                            pageStep={this.pageStep}
-                            setPage={this.setPage}
+                    <Title
+                        page={this.state.page}
+                        lightTheme={this.state.lightTheme}
+                    />
+                    <Theme
+                        lightTheme={this.state.lightTheme}
+                        toggle={this.toggle}
+                    />
+                    <Pagination
+                        page={this.state.page}
+                        max_page={this.MAX_PAGE}
+                        pageStep={this.pageStep}
+                        setPage={this.setPage}
+                        lightTheme={this.state.lightTheme}
+                    />
+                    <Films
+                        films={this.state.films}
+                        page={this.state.page}
+                        isLoading={this.state.isLoading}
+                        error={this.state.error}
+                        lightTheme={this.state.lightTheme}
+                        getReleaseDate={this.getReleaseDate}
+                        togglePopUp={this.togglePopUp}
+                    />
+                    {this.state.isOpenPopUp && (
+                        <PopUp
+                            date={this.state.releaseDate}
+                            togglePopUp={this.togglePopUp}
                         />
-                    </div>
-                    {this.state.error ? (
-                        <div>Error: {this.state.error.message}</div>
-                    ) : !this.state.isLoading ? (
-                        this.state.films.results.map((film) => {
-                            return (
-                                <div className="filmWrap" key={film.id}>
-                                    <hr />
-                                    <h2 className="filmTitle">{film.title}</h2>
-                                    <PopUp release={film.release_date} />
-                                    <RateSwitch rating={film.popularity} />
-                                    <div className="filmBlock">
-                                        <img
-                                            className="filmImg"
-                                            src={`https://image.tmdb.org/t/p/w500/${film.poster_path}`}
-                                            alt={film.title}
-                                        />
-                                        <p className="filmOverview">
-                                            {film.overview}
-                                        </p>
-                                    </div>
-                                </div>
-                            );
-                        })
-                    ) : (
-                        <div>Loading...</div>
                     )}
                 </div>
             </ThemeContext.Provider>
