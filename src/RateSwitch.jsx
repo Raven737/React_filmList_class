@@ -16,6 +16,7 @@ class RateSwitch extends Component {
 
     render() {
         // const { lightTheme } = this.context;
+        console.log(this.props.lightTheme);
         return (
             <div>
                 <Button

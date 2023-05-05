@@ -11,8 +11,8 @@ class Theme extends Component {
 
     render() {
         return (
-            <div class="d-flex justify-content-end">
-                <Button
+            <div class="d-flex justify-content-end mb-2">
+                <Button size="md-sm"
                     variant={this.props.lightTheme ? "info" : "secondary"}
                     onClick={this.toggleIcons}
                 >

@@ -30,9 +30,9 @@ class Pagination extends Component {
                     this.props.lightTheme ? "light-theme" : "dark-theme"
                 }`}
             >
-                <div className="d-flex">
+                <div className="d-sm-flex">
                     <Button
-                        className="me-1"
+                        className="me-1 mb-1"
                         variant={
                             this.props.lightTheme ? "primary" : "secondary"
                         }
@@ -41,7 +41,7 @@ class Pagination extends Component {
                         - 10
                     </Button>
                     <Button
-                        className="me-1"
+                        className="me-1 mb-1"
                         variant={
                             this.props.lightTheme ? "warning" : "secondary"
                         }
@@ -51,14 +51,19 @@ class Pagination extends Component {
                     </Button>
                     <Form className="d-flex">
                         <FormControl
-                            className="me-1"
+                            style={{
+                                background: this.props.lightTheme
+                                    ? "lightblue"
+                                    : "grey",
+                            }}
+                            className="me-1 mb-1"
                             type="number"
                             placeholder="Введіть номер стор."
                             value={this.state.inputValue}
                             onChange={handleInputValue}
                         />
                         <Button
-                            className="me-1"
+                            className="me-1 mb-1"
                             variant={
                                 this.props.lightTheme ? "danger" : "secondary"
                             }
@@ -68,7 +73,7 @@ class Pagination extends Component {
                         </Button>
                     </Form>
                     <Button
-                        className="me-1"
+                        className="me-1 mb-1"
                         variant={
                             this.props.lightTheme ? "warning" : "secondary"
                         }
@@ -77,6 +82,7 @@ class Pagination extends Component {
                         + 1
                     </Button>
                     <Button
+                        className="mb-1"
                         variant={
                             this.props.lightTheme ? "primary" : "secondary"
                         }

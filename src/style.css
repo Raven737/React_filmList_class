@@ -17,23 +17,6 @@
     margin-left: 10px;
     font-weight: bold;
 }
-/* .pagination {
-    text-align: center;
-} */
-/* .pagination__form {
-    display: inline-block;
-    margin: 10px;
-} */
-/* .theme {
-    display: flex;
-    justify-content: flex-end;
-}
-.themeBtn {
-    align-self: center;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-} */
 #sun,
 #moon {
     margin-left: 10px;
@@ -48,9 +31,6 @@
 }
 .filmWrap {
     position: relative;
-}
-.filmBlock {
-    display: flex;
 }
 .filmOverview {
     margin: 0;
@@ -82,7 +62,6 @@
     height: 30px;
     top: 10px;
     right: 10px;
-    /* border: 1px solid; */
     border-radius: 5px;
     cursor: pointer;
 }

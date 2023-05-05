@@ -22,10 +22,14 @@ class Films extends Component {
                             <div className="filmWrap" key={film.id}>
                                 <hr />
                                 <h2 className="filmTitle">{film.title}</h2>
-                                <RateSwitch rating={film.popularity} />
-                                <div className="filmBlock">
+                                <RateSwitch
+                                    rating={film.popularity}
+                                    lightTheme={this.props.lightTheme}
+                                />
+                                <div className="d-md-flex">
                                     <img
-                                        className="filmImg"
+                                        className="w-100"
+                                        // style={{width: 100%}}
                                         onClick={() => {
                                             this.props.getReleaseDate(
                                                 film.release_date
