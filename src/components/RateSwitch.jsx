@@ -1,5 +1,5 @@
 import { Component } from "react";
-// import ThemeContext from "./Context";
+import ThemeContext from "./Context";
 import Button from "react-bootstrap/Button";
 
 class RateSwitch extends Component {
@@ -10,18 +10,17 @@ class RateSwitch extends Component {
         };
     }
 
-    // static contextType = ThemeContext;
+    static contextType = ThemeContext;
 
     toggleRate = () => this.setState({ isShowRate: !this.state.isShowRate });
 
     render() {
-        // const { lightTheme } = this.context;
-        console.log(this.props.lightTheme);
+        const { lightTheme } = this.context;
         return (
             <div>
                 <Button
                     className="mb-1"
-                    variant={this.props.lightTheme ? "info" : "secondary"}
+                    variant={lightTheme ? "info" : "secondary"}
                     onClick={this.toggleRate}
                 >
                     {this.state.isShowRate ? "Hide Rate" : "Show Rate"}

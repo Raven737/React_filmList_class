@@ -1,7 +1,6 @@
 import { Component } from "react";
 import RateSwitch from "./RateSwitch";
 import ThemeContext from "./Context";
-import Button from "react-bootstrap/Button";
 
 class Films extends Component {
     static contextType = ThemeContext;
@@ -29,7 +28,6 @@ class Films extends Component {
                                 <div className="d-md-flex">
                                     <img
                                         className="w-100"
-                                        // style={{width: 100%}}
                                         onClick={() => {
                                             this.props.getReleaseDate(
                                                 film.release_date

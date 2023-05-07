@@ -79,27 +79,16 @@ class App_class extends React.Component {
                         this.state.lightTheme ? "light-theme" : "dark-theme"
                     }
                 >
-                    <Title
-                        page={this.state.page}
-                        lightTheme={this.state.lightTheme}
-                    />
-                    <Theme
-                        lightTheme={this.state.lightTheme}
-                        toggle={this.toggle}
-                    />
+                    <Title />
+                    <Theme toggle={this.toggle} />
                     <Pagination
                         page={this.state.page}
                         max_page={this.MAX_PAGE}
                         pageStep={this.pageStep}
                         setPage={this.setPage}
-                        lightTheme={this.state.lightTheme}
                     />
                     <Films
-                        films={this.state.films}
                         page={this.state.page}
-                        isLoading={this.state.isLoading}
-                        error={this.state.error}
-                        lightTheme={this.state.lightTheme}
                         getReleaseDate={this.getReleaseDate}
                         togglePopUp={this.togglePopUp}
                     />

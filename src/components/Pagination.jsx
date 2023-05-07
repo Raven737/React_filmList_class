@@ -1,4 +1,5 @@
 import { Component } from "react";
+import ThemeContext from "./Context";
 import { Form, FormControl, Button } from "react-bootstrap";
 
 class Pagination extends Component {
@@ -9,7 +10,10 @@ class Pagination extends Component {
         };
     }
 
+    static contextType = ThemeContext;
+
     render() {
+        const { lightTheme } = this.context;
         const { max_page, pageStep, setPage } = this.props;
 
         const handleInputValue = (event) => {
@@ -27,24 +31,20 @@ class Pagination extends Component {
         return (
             <div
                 className={`d-flex justify-content-center ${
-                    this.props.lightTheme ? "light-theme" : "dark-theme"
+                    lightTheme ? "light-theme" : "dark-theme"
                 }`}
             >
                 <div className="d-sm-flex">
                     <Button
                         className="me-1 mb-1"
-                        variant={
-                            this.props.lightTheme ? "primary" : "secondary"
-                        }
+                        variant={lightTheme ? "primary" : "secondary"}
                         onClick={() => pageStep(-10)}
                     >
                         - 10
                     </Button>
                     <Button
                         className="me-1 mb-1"
-                        variant={
-                            this.props.lightTheme ? "warning" : "secondary"
-                        }
+                        variant={lightTheme ? "warning" : "secondary"}
                         onClick={() => pageStep(-1)}
                     >
                         - 1
@@ -52,9 +52,7 @@ class Pagination extends Component {
                     <Form className="d-flex">
                         <FormControl
                             style={{
-                                background: this.props.lightTheme
-                                    ? "lightblue"
-                                    : "grey",
+                                background: lightTheme ? "lightblue" : "grey",
                             }}
                             className="me-1 mb-1"
                             type="number"
@@ -64,9 +62,7 @@ class Pagination extends Component {
                         />
                         <Button
                             className="me-1 mb-1"
-                            variant={
-                                this.props.lightTheme ? "danger" : "secondary"
-                            }
+                            variant={lightTheme ? "danger" : "secondary"}
                             onClick={handleSetPage}
                         >
                             Пошук
@@ -74,18 +70,14 @@ class Pagination extends Component {
                     </Form>
                     <Button
                         className="me-1 mb-1"
-                        variant={
-                            this.props.lightTheme ? "warning" : "secondary"
-                        }
+                        variant={lightTheme ? "warning" : "secondary"}
                         onClick={() => pageStep(1)}
                     >
                         + 1
                     </Button>
                     <Button
                         className="mb-1"
-                        variant={
-                            this.props.lightTheme ? "primary" : "secondary"
-                        }
+                        variant={lightTheme ? "primary" : "secondary"}
                         onClick={() => pageStep(10)}
                     >
                         + 10

@@ -1,22 +1,24 @@
 import { Component } from "react";
 import Button from "react-bootstrap/Button";
-// import ThemeContext from "./Context";
+import ThemeContext from "./Context";
 
 class Theme extends Component {
-    // static contextType = ThemeContext;
+    static contextType = ThemeContext;
 
     toggleIcons = () => {
         this.props.toggle();
     };
 
     render() {
+        const { lightTheme } = this.context;
         return (
             <div class="d-flex justify-content-end mb-2">
-                <Button size="md-sm"
-                    variant={this.props.lightTheme ? "info" : "secondary"}
+                <Button
+                    size="md-sm"
+                    variant={lightTheme ? "info" : "secondary"}
                     onClick={this.toggleIcons}
                 >
-                    {this.props.lightTheme ? (
+                    {lightTheme ? (
                         <>
                             <span>Light</span>
                             <svg
