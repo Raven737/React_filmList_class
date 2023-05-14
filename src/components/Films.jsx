@@ -27,7 +27,7 @@ class Films extends Component {
                                 />
                                 <div className="d-md-flex">
                                     <img
-                                        className="w-100"
+                                        className="w-100px"
                                         onClick={() => {
                                             this.props.getReleaseDate(
                                                 film.release_date
